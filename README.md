@@ -59,6 +59,6 @@
         sheet.doWrite(list);
 
         给实体类字上面加 @ExcelProperty("产品名字") 这样导出的标头就是中文，不然是实体类英文名
-        如果不想把某个字段导出，比如id，那就不要加@ExcelProperty这个注解，并且在实体类上面加@
+        如果不想把某个字段导出，比如id，那就不要加@ExcelProperty这个注解，并且在实体类上面加@@ExcelIgnoreUnannotated
 
     

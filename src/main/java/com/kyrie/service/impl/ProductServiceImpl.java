@@ -47,16 +47,21 @@ public class ProductServiceImpl implements ProductService {
     public void exportExcel(HttpServletResponse response, ExcelExportQueryWapperDTO dto) {
 
         try {
+            //设置导出的文件为excel格式
+//            response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8");
+//            response.setCharacterEncoding("utf-8");
+//            String fileName = URLEncoder.encode("测试导出产品", "UTF-8").replaceAll("\\+","%20");
+//            response.setHeader("Content-Disposition", "attachment; filename=" + fileName + ".xlsx");
+
+            //设置导出的文件为excel格式
             response.setContentType("application/vnd.ms-excle");
             response.setCharacterEncoding("utf-8");
             String fileName = URLEncoder.encode("测试导出产品", "UTF-8");
             response.setHeader("Content-Disposition", "attachment; filename*=UTF-8''" + fileName + ".xlsx");
 
             ServletOutputStream outputStream = response.getOutputStream();
-
             //根据dto规则筛选查询出符合条件的数据，转成List<Product>集合
             List<Product> products = queryProduct(dto);
-
             //导出
             EasyExcel.write(outputStream, Product.class).sheet().doWrite(products);
 

@@ -2,7 +2,13 @@
 
     大概步骤就是先读取文件，获取工作薄对象。从本地file或者流都可以
     创建监听器，每读一行都会用到listener监听器，调用invoke方法，再该方法中操作读取到的数据
-写
+    注意!! 监听器要定义成多例的 @Scope("prototype")
+导出的时候注意要设置response的格式为excel，不然会导出其他格式文件
+    
+            response.setContentType("application/vnd.ms-excle");
+            response.setCharacterEncoding("utf-8");
+            String fileName = URLEncoder.encode("测试导出产品", "UTF-8");
+            response.setHeader("Content-Disposition", "attachment; filename*=UTF-8''" + fileName + ".xlsx");
     
 
 第一步：引入依赖
@@ -59,6 +65,11 @@
         sheet.doWrite(list);
 
         给实体类字上面加 @ExcelProperty("产品名字") 这样导出的标头就是中文，不然是实体类英文名
-        如果不想把某个字段导出，比如id，那就不要加@ExcelProperty这个注解，并且在实体类上面加@@ExcelIgnoreUnannotated
+        如果不想把某个字段导出，加@ExcelIgnore注解，这个字段不参与读写    
+        
+        给导出的文件列调整顺序  @ExcelProperty(value = "产品名字", index = 0)  产品名字在第一列展示
+
 
     
+
+         

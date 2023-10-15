@@ -26,7 +26,40 @@
             </exclusions>
     </dependency>
 
-第二步：创建监听器
+第二步：创建实体类
+
+    @Data
+    @ExcelIgnoreUnannotated
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public class Product {
+        @ExcelProperty("产品名字")
+        private String name;
+
+        @ExcelProperty("五点")
+        private String fivePoint;
+
+        @ExcelProperty("描述")
+        private String description;
+
+        @ExcelProperty("ASIN")
+        private String asin;
+
+        @ExcelProperty("SKU")
+        private String sku;
+
+        @ExcelProperty("国家")
+        private String county;
+
+        @ExcelProperty("创建时间")
+        private Date createDate;
+
+        //忽略这个字段
+        @ExcelIgnore
+        private String ignore;
+    }
+
+第三步：创建监听器
     
     写个类继承AnalysisEventListener<实体类>  每读取一行都会调用该方法
         重写invoke方法（每读一行都会调用该方法） *可以读一行存一次数据库

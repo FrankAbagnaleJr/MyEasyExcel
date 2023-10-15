@@ -32,6 +32,8 @@ public class ProductServiceImpl implements ProductService {
     public void readExcelAndSave(MultipartFile multipartFile) {
         try {
             //得到读工作簿对象.工作簿对象.读
+            //文件，对应的实体类，监听器，读表几，默认是0，开始读
+            //这个监听器里面重写了方法：1.每读一行做什么操作，2.读完了后做什么操作
             EasyExcel.read(multipartFile.getInputStream(), Product.class, excelReadListener).sheet().doRead();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -81,7 +83,7 @@ public class ProductServiceImpl implements ProductService {
         List<Product> products = new ArrayList<>();
 
         for (int i = 1; i < 10; i++) {
-            Product product1 = new Product("水果架", "五点" + i, "描述" + i, "B000" + i, "SKU" + i, "DE", new Date());
+            Product product1 = new Product("水果架", "五点" + i, "描述" + i, "B000" + i, "SKU" + i, "DE", new Date(),"忽略的字段"+i);
             products.add(product1);
         }
         return products;

@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
+//多例
 @Scope("prototype")
 @Slf4j
 public class ExcelReadListener extends AnalysisEventListener<Product> {

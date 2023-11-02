@@ -17,6 +17,11 @@
         <java.version>8</java.version>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.7.18</version>
+        </dependency>
 
         <!--   Easy Excel  排除它自带的slf4j日志版本    -->
         <dependency>
